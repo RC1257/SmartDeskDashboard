@@ -1,0 +1,16 @@
+{
+  "codename": "Peri",
+  "ttf_path": "/assets/PERI____.TTF",
+  "bin_path": "/assets\\ui_font_Peri.bin",
+  "c_path": "/assets\\ui_font_Peri.c",
+  "cfg_path": "/assets\\ui_font_Peri.fcfg",
+  "size": 32,
+  "bpp": 2,
+  "letters": 0,
+  "ranges": [
+    "0x20-0x7f"
+  ],
+  "symbols": "",
+  "customparams": "--no-compress --no-prefilter",
+  "uploaded": false
+}

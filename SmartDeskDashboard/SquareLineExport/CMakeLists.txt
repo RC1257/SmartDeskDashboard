@@ -1,0 +1,15 @@
+SET(SOURCES screens/ui_ScreenStartup.c
+    screens/ui_screenHome.c
+    screens/ui_screenTimer.c
+    screens/ui_screenTasks.c
+    screens/ui_screenQuote.c
+    screens/ui_screenSettings.c
+    screens/ui_screenDisplay.c
+    screens/ui_screenVolNet.c
+    screens/ui_screenAbout.c
+    ui.c
+    components/ui_comp_hook.c
+    ui_helpers.c
+    fonts/ui_font_Peri.c)
+
+add_library(ui ${SOURCES})

@@ -1,0 +1,20 @@
+# Ignore build folder
+build/
+bin/
+
+# Ignore all dot folders, with below exceptions
+.*/
+
+# VSCode
+.vscode
+
+# MacOS file
+.DS_Store
+
+# VS Code local history
+.history/
+**/.history/
+
+# Nested LVGL simulator repositories
+SmartDeskDashboard/lv_port_pc_vscode/
+simulator/lv_port_pc_vscode/
