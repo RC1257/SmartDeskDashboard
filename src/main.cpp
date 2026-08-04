@@ -56,13 +56,12 @@ void setup()
     initWiFi();
     initTimer();
     initTasks();
-    initQuotes();
+    // initQuotes();
 
     initUI();
     Navigation::init();
 
     goToSplashScreen();
-    setCurrentScreen(Screen::Splash);
     
 }
 

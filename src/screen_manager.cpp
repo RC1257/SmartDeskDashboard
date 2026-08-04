@@ -1,81 +1,120 @@
 #include <Arduino.h>
+#include <lvgl.h>
 
 #include "screen_manager.h"
 #include "state_manager.h"
 
-//--------------------------------------------------
-// Splash Screen
-//--------------------------------------------------
+extern "C"
+{
+#include "ui.h"
+}
+
+static void loadScreen(
+    lv_obj_t *screenObject,
+    Screen screenState,
+    const char *screenName
+)
+{
+    if (screenObject == nullptr)
+    {
+        Serial.print("Cannot load screen: ");
+        Serial.print(screenName);
+        Serial.println(" is null.");
+        return;
+    }
+
+    setCurrentScreen(screenState);
+
+    lv_screen_load_anim(
+        screenObject,
+        LV_SCR_LOAD_ANIM_FADE_IN,
+        250,
+        0,
+        false
+    );
+
+    Serial.print("Switched to ");
+    Serial.print(screenName);
+    Serial.println(" screen.");
+}
 
 void goToSplashScreen()
 {
-    setCurrentScreen(Screen::Splash);
-
-    Serial.println("Switched to Splash Screen");
+    loadScreen(
+        ui_ScreenStartup,
+        Screen::Splash,
+        "Splash"
+    );
 }
-
-//--------------------------------------------------
-// Home Screen
-//--------------------------------------------------
 
 void goToHomeScreen()
 {
-    setCurrentScreen(Screen::Home);
-
-    Serial.println("Switched to Home Screen");
+    loadScreen(
+        ui_screenHome,
+        Screen::Home,
+        "Home"
+    );
 }
-
-//--------------------------------------------------
-// Timer Screen
-//--------------------------------------------------
 
 void goToTimerScreen()
 {
-    setCurrentScreen(Screen::Timer);
-
-    Serial.println("Switched to Timer Screen");
+    loadScreen(
+        ui_screenTimer,
+        Screen::Timer,
+        "Timer"
+    );
 }
-
-//--------------------------------------------------
-// Tasks Screen
-//--------------------------------------------------
 
 void goToTasksScreen()
 {
-    setCurrentScreen(Screen::Tasks);
-
-    Serial.println("Switched to Tasks Screen");
+    loadScreen(
+        ui_screenTasks,
+        Screen::Tasks,
+        "Tasks"
+    );
 }
-
-//--------------------------------------------------
-// Calendar Screen
-//--------------------------------------------------
-
-void goToCalendarScreen()
-{
-    setCurrentScreen(Screen::Calendar);
-
-    Serial.println("Switched to Calendar Screen");
-}
-
-//--------------------------------------------------
-// Quote Screen
-//--------------------------------------------------
 
 void goToQuoteScreen()
 {
-    setCurrentScreen(Screen::Quote);
-
-    Serial.println("Switched to Quote Screen");
+    loadScreen(
+        ui_screenQuote,
+        Screen::Quote,
+        "Quote"
+    );
 }
-
-//--------------------------------------------------
-// Settings Screen
-//--------------------------------------------------
 
 void goToSettingsScreen()
 {
-    setCurrentScreen(Screen::Settings);
+    loadScreen(
+        ui_screenSettings,
+        Screen::Settings,
+        "Settings"
+    );
+}
 
-    Serial.println("Switched to Settings Screen");
+void goToDisplayScreen()
+{
+    loadScreen(
+        ui_screenDisplay,
+        Screen::Display,
+        "Display"
+    );
+}
+
+void goToVolumeNetworkScreen()
+{
+    loadScreen(
+        ui_screenVolNet,
+        Screen::VolumeNetwork,
+        "Volume and Network"
+    );
+}
+
+void goToAboutScreen()
+{
+    loadScreen(
+        ui_screenAbout,
+        Screen::About,
+        "About"
+    );
 }

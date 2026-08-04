@@ -5,9 +5,10 @@ void goToSplashScreen();
 void goToHomeScreen();
 void goToTimerScreen();
 void goToTasksScreen();
-void goToCalendarScreen();
 void goToQuoteScreen();
 void goToSettingsScreen();
+void goToDisplayScreen();
+void goToVolumeNetworkScreen();
+void goToAboutScreen();
 
 #endif
-
