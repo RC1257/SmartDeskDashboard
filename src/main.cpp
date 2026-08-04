@@ -37,6 +37,7 @@ void loop()
 #include "wifi.h"
 #include "ui_update.h"
 #include "state_manager.h"
+#include "startup_controller.h"
 
 
 void setup()
@@ -61,7 +62,7 @@ void setup()
     initUI();
     Navigation::init();
 
-    goToSplashScreen();
+    StartupController::init();
     
 }
 

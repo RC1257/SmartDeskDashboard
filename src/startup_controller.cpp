@@ -4,22 +4,15 @@
 
 #include "navigation.h"
 #include "theme_manager.h"
+#include "screen_manager.h"
 
 
 namespace {
 
 void startupFinished(lv_timer_t* timer)
 {
-    lv_screen_load_anim(
-        ui_screenHome,
-        LV_SCR_LOAD_ANIM_FADE_IN,
-        500,
-        0,
-        false
-    );
-
-    // Wait until the 500 ms transition is finished.
-
+       // Wait until the 500 ms transition is finished.
+    goToHomeScreen();
     lv_timer_delete(timer);
 }
 
