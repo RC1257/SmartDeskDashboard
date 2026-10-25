@@ -34,10 +34,13 @@ void loop()
 #include "tasks.h"
 #include "quote.h"
 #include "storage.h"
-#include "wifi.h"
+#include "dashboard_wifi.h"
 #include "ui_update.h"
 #include "state_manager.h"
 #include "startup_controller.h"
+#include "navigation_input.h"
+#include "timer_controller.h"
+#include "clock_manager.h"
 
 
 void setup()
@@ -55,14 +58,19 @@ void setup()
     initSettings();
     initClock();
     initWiFi();
-    initTimer();
+    // initTimer();
     initTasks();
     // initQuotes();
 
     initUI();
+
+    ClockManager::init();
+    TimerController::init();
     Navigation::init();
 
+    NavigationInput::init();
     StartupController::init();
+    
     
 }
 

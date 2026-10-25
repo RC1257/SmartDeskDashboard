@@ -1,4 +1,5 @@
 #include "../include/settings_manager.h"
+#include <Arduino.h>
 
 #include "lvgl.h"
 #include "ui.h"
@@ -51,37 +52,46 @@ namespace SettingsManager
     }
 
     void increaseBrightness()
-    {
-        if(brightness >= 100)
-        {
-            brightness = 10;
-        }
-        else
-        {
-            brightness += 10;
-        }
+{
+    brightness += 10;
 
-        update_brightness_bar();
+    if(brightness > 100)
+    {
+        brightness = 10;
     }
 
+    Serial.print("Brightness value: ");
+    Serial.println(brightness);
+
+    lv_bar_set_value(
+        ui_BarBrightness,
+        brightness,
+        LV_ANIM_OFF
+    );
+}
     uint8_t getBrightness()
     {
         return brightness;
     }
 
     void increaseVolume()
-    {
-        if(volume >= 100)
-        {
-            volume = 10;
-        }
-        else
-        {
-            volume += 10;
-        }
+{
+    volume += 10;
 
-        update_volume_bar();
+    if(volume > 100)
+    {
+        volume = 10;
     }
+
+    Serial.print("Volume value: ");
+    Serial.println(volume);
+
+    lv_bar_set_value(
+        ui_BarBrightness_1,
+        volume,
+        LV_ANIM_OFF
+    );
+}
 
     uint8_t getVolume()
     {

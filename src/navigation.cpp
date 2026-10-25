@@ -4,11 +4,13 @@
 #include "../include/settings_manager.h"
 #include "../include/theme_manager.h"
 #include "../include/clock_manager.h"
+#include "navigation_keys.h"
 
 #include "lvgl.h"
 #include "ui.h"
 
 #include <stdio.h>
+#include <Arduino.h>
 
 namespace
 {
@@ -286,6 +288,8 @@ namespace
 {
     clear_navigation_group();
 
+    lv_group_set_editing(navigation_group, false);
+
     prepare_focusable_object(ui_PanelDisplay);
     prepare_focusable_object(ui_PanelVolNet);
     prepare_focusable_object(ui_PanelAbout);
@@ -305,6 +309,9 @@ void setup_display_screen()
     }
 
     clear_navigation_group();
+
+    lv_group_set_editing(navigation_group, true);
+
 
     prepare_focusable_object(ui_PanelLight);
     prepare_focusable_object(ui_PanelDark);
@@ -345,6 +352,8 @@ void setup_volnet_screen()
     }
 
     clear_navigation_group();
+
+    lv_group_set_editing(navigation_group, true);
 
     prepare_focusable_object(ui_PanelConnection);
     prepare_focusable_object(ui_PanelTimeSync);
@@ -958,6 +967,9 @@ void display_key_event(lv_event_t* event)
     lv_obj_t* focused_object = lv_event_get_target_obj(event);
     const uint32_t key = lv_event_get_key(event);
 
+    Serial.print("Display screen key: ");
+    Serial.println(static_cast<unsigned long>(key));
+
     /*
      * LEFT returns to Main Settings.
      */
@@ -975,10 +987,14 @@ void display_key_event(lv_event_t* event)
      */
     if(key == LV_KEY_RIGHT)
     {
-        SettingsManager::increaseBrightness();
-        return;
-    }
+    Serial.println("Increasing brightness");
 
+    SettingsManager::increaseBrightness();
+
+    lv_event_stop_processing(event);
+
+    return;
+}
     /*
      * LIGHT THEME
      */
@@ -1059,6 +1075,9 @@ void volnet_key_event(lv_event_t* event)
     lv_obj_t* focused_object = lv_event_get_target_obj(event);
     const uint32_t key = lv_event_get_key(event);
 
+    Serial.print("Volume screen key: ");
+    Serial.println(static_cast<unsigned long>(key));
+
     /*
      * LEFT returns to Settings.
      */
@@ -1076,10 +1095,13 @@ void volnet_key_event(lv_event_t* event)
      */
     if(key == LV_KEY_RIGHT)
     {
-        SettingsManager::increaseVolume();
-        return;
-    }
+    Serial.println("Increasing volume");
 
+    SettingsManager::increaseVolume();
+
+    lv_event_stop_processing(event);
+    return;
+    }
     /*
      * Connection
      */

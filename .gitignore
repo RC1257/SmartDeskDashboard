@@ -26,3 +26,6 @@ simulator/bin/
 # Local editor history
 .history/
 **/.history/
+
+# Private Wi-Fi credentials
+include/wifi_credentials.h

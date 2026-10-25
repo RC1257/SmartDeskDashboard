@@ -17,6 +17,12 @@ void initUI()
     lastLvglTick = millis();
     ui_init();
 
+    // Remove SquareLine's default checkbox text
+    lv_checkbox_set_text(ui_Checkbox1, "");
+    lv_checkbox_set_text(ui_Checkbox2, "");
+    lv_checkbox_set_text(ui_Checkbox3, "");
+    lv_checkbox_set_text(ui_Checkbox4, "");
+
     Serial.println("SquareLine UI initialized.");
 }
 
