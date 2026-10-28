@@ -41,11 +41,36 @@ void loop()
 #include "navigation_input.h"
 #include "timer_controller.h"
 #include "clock_manager.h"
+#include "audio.h"
 
 
 void setup()
 {
     Serial.begin(115200);
+
+    delay(1000);
+
+Serial.println("===== ESP32 MEMORY CHECK =====");
+
+Serial.println("===== PSRAM DIAGNOSTICS =====");
+
+Serial.printf("PSRAM found: %s\n",
+              psramFound() ? "YES" : "NO");
+
+Serial.printf("PSRAM size: %u bytes\n",
+              ESP.getPsramSize());
+
+Serial.printf("Free internal heap: %u bytes\n",
+              ESP.getFreeHeap());
+
+Serial.println("=============================");
+
+Serial.printf("Free heap: %u bytes\n", ESP.getFreeHeap());
+Serial.printf("Free PSRAM: %u bytes\n", ESP.getFreePsram());
+Serial.printf("Total PSRAM: %u bytes\n", ESP.getPsramSize());
+
+Serial.println("==============================");
+
 
     Serial.println();
     Serial.println("===============================");
@@ -70,7 +95,7 @@ void setup()
 
     NavigationInput::init();
     StartupController::init();
-    
+
     
 }
 
